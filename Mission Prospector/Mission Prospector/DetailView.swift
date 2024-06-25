@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct DetailView: View {
-    let society: SocietyStorage
+    @FetchRequest(sortDescriptors: []) var societies: FetchedResults<SocietyStorage>
+    
+    @State var society: SocietyStorage
+    
+    @State var modifyNotes = false
+    @State var notesOrigin: NotesOrigin = .CEO
+    @State var notesToModify = ""
     
     @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
@@ -40,7 +46,17 @@ struct DetailView: View {
                         }
                         Text(society.cEOPhone ?? "Inconnu")
                     }
-                    Text(society.cEONotes ?? "Inconnu")
+                    HStack(alignment: .top) {
+                        Text(society.cEONotes ?? "Inconnu")
+                        Spacer()
+                        Button {
+                            notesOrigin = .CEO
+                            updateNotes()
+                            modifyNotes = true
+                        } label: {
+                            Image(systemName: "pencil")
+                        }
+                    }
                 } header: {
                     HStack {
                         Text("CEO")
@@ -76,7 +92,17 @@ struct DetailView: View {
                         }
                         Text(society.cTOPhone ?? "Inconnu")
                     }
-                    Text(society.cTONotes ?? "Inconnu")
+                    HStack(alignment: .top) {
+                        Text(society.cTONotes ?? "Inconnu")
+                        Spacer()
+                        Button {
+                            notesOrigin = .CTO
+                            updateNotes()
+                            modifyNotes = true
+                        } label: {
+                            Image(systemName: "pencil")
+                        }
+                    }
                 } header: {
                     HStack {
                         Text("CTO")
@@ -110,9 +136,21 @@ struct DetailView: View {
                                 Image(systemName: "phone")
                             }
                         }
+                        
                         Text(society.cOOPhone ?? "Inconnu")
+                        
                     }
-                    Text(society.cOONotes ?? "Inconnu")
+                    HStack(alignment: .top) {
+                        Text(society.cOONotes ?? "Inconnu")
+                        Spacer()
+                        Button {
+                            notesOrigin = .COO
+                            updateNotes()
+                            modifyNotes = true
+                        } label: {
+                            Image(systemName: "pencil")
+                        }
+                    }
                 } header: {
                     HStack {
                         Text("COO")
@@ -148,7 +186,17 @@ struct DetailView: View {
                         }
                         Text(society.leadDevPhone ?? "Inconnu")
                     }
-                    Text(society.leadDevNotes ?? "Inconnu")
+                    HStack(alignment: .top) {
+                        Text(society.leadDevNotes ?? "Inconnu")
+                        Spacer()
+                        Button {
+                            notesOrigin = .leadDev
+                            updateNotes()
+                            modifyNotes = true
+                        } label: {
+                            Image(systemName: "pencil")
+                        }
+                    }
                 } header: {
                     HStack {
                         Text("Lead Dev")
@@ -180,6 +228,43 @@ struct DetailView: View {
                     Label("Suppr.", systemImage: "trash")
                 }
             }
+            .sheet(isPresented: $modifyNotes) {
+                    ModifyNotesInDetailView(showSheet: $modifyNotes, notes: $notesToModify)
+            }
+            .onChange(of: modifyNotes) { _, newValue in
+                if !newValue {
+                    print("On garde les notes")
+                    switch notesOrigin {
+                        case .CEO:
+                            society.cEONotes = notesToModify
+                        case .CTO:
+                            society.cTONotes = notesToModify
+                        case .COO:
+                            society.cOONotes = notesToModify
+                        case .leadDev:
+                            society.leadDevNotes = notesToModify
+                    }
+                    do {
+                        try moc.save()
+                        update()
+                    } catch {
+                        print("Error : \(error.localizedDescription)")
+                    }
+                }
+            }
+        }
+    }
+    
+    private func updateNotes() {
+        switch notesOrigin {
+            case .CEO:
+                notesToModify = society.cEONotes ?? ""
+            case .CTO:
+                notesToModify = society.cTONotes ?? ""
+            case .COO:
+                notesToModify = society.cOONotes ?? ""
+            case .leadDev:
+                notesToModify = society.leadDevNotes ?? ""
         }
     }
     
@@ -188,5 +273,13 @@ struct DetailView: View {
         
         try? moc.save()
         dismiss()
+    }
+    
+    func update() {
+        for societyToFind in societies {
+            if societyToFind.id == society.id {
+                society = societyToFind
+            }
+        }
     }
 }

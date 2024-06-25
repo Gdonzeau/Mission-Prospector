@@ -101,6 +101,7 @@ struct AddSocietyView: View {
                     TextField(LocalizedStringKey("email"), text: $CEOEmail).keyboardType(.emailAddress)
                     TextField(LocalizedStringKey("PhoneNb"), text: $CEOPhone).keyboardType(.phonePad)
                     TextEditor(text: $CEONotes)
+                        
                 } header: {
                     HStack {
                         Text("CEO")

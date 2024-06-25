@@ -16,6 +16,8 @@
 		F0BF67AE2C2A070600F8A376 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BF67AD2C2A070600F8A376 /* DetailView.swift */; };
 		F0BF67B02C2A0D7C00F8A376 /* AddSocietyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BF67AF2C2A0D7C00F8A376 /* AddSocietyView.swift */; };
 		F0BF67B52C2AA96400F8A376 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F0BF67B32C2AA96400F8A376 /* Localizable.strings */; };
+		F0BF67D22C2B394C00F8A376 /* ModifyNotesInDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BF67D12C2B394C00F8A376 /* ModifyNotesInDetailView.swift */; };
+		F0BF67D42C2B4E0700F8A376 /* NotesOrigin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BF67D32C2B4E0700F8A376 /* NotesOrigin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		F0BF67AF2C2A0D7C00F8A376 /* AddSocietyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSocietyView.swift; sourceTree = "<group>"; };
 		F0BF67B42C2AA96400F8A376 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F0BF67B62C2AA97700F8A376 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F0BF67D12C2B394C00F8A376 /* ModifyNotesInDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyNotesInDetailView.swift; sourceTree = "<group>"; };
+		F0BF67D32C2B4E0700F8A376 /* NotesOrigin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesOrigin.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +70,9 @@
 				F0BF67A62C2A01E100F8A376 /* Home.swift */,
 				F0BF67A82C2A020300F8A376 /* DataController.swift */,
 				F0BF67AD2C2A070600F8A376 /* DetailView.swift */,
+				F0BF67D12C2B394C00F8A376 /* ModifyNotesInDetailView.swift */,
 				F0BF67AF2C2A0D7C00F8A376 /* AddSocietyView.swift */,
+				F0BF67D32C2B4E0700F8A376 /* NotesOrigin.swift */,
 				F0BF67B32C2AA96400F8A376 /* Localizable.strings */,
 				F0BF67AA2C2A03E000F8A376 /* Society.xcdatamodeld */,
 				F0BF679C2C2A01B000F8A376 /* Assets.xcassets */,
@@ -161,6 +167,8 @@
 				F0BF67A92C2A020300F8A376 /* DataController.swift in Sources */,
 				F0BF67AE2C2A070600F8A376 /* DetailView.swift in Sources */,
 				F0BF67992C2A01AE00F8A376 /* Mission_ProspectorApp.swift in Sources */,
+				F0BF67D22C2B394C00F8A376 /* ModifyNotesInDetailView.swift in Sources */,
+				F0BF67D42C2B4E0700F8A376 /* NotesOrigin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
