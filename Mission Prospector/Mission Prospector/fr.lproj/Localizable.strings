@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  Mission Prospector
+
+  Created by Guillaume on 25/06/2024.
+  
+*/
+"Societies" = "Entreprises";
+"Society" = "Entreprise";
+"FirstName" = "Prénom";
+"FamilyName" = "Nom de famille";
+"PhoneNb" = "Téléphone";
+"email" = "email";
+"notes" = "Notes";
+"accueil" = "Accueil";
+"noSociety" = "Pas de société enregistrée";
+"noNameTitle" = "Pas de nom";
+"noNameMessage" = "Vous devez entrer au moins le nom de l'entreprise";
+"save" = "Sauvegarder";
+
+"delete?" = "Supprimer ?";
+"delete" = "Supprimer";
+"cancel" = "Annuler";
+"sure?" = "Êtes-vous sûr ?";

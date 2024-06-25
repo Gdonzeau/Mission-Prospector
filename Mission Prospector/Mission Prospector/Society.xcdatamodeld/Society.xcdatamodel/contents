@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="SocietyStorage" representedClassName="SocietyStorage" syncable="YES" codeGenerationType="class">
+        <attribute name="cEOEmail" optional="YES" attributeType="String"/>
+        <attribute name="cEOFamilyName" optional="YES" attributeType="String"/>
+        <attribute name="cEOFirstName" optional="YES" attributeType="String"/>
+        <attribute name="cEONotes" optional="YES" attributeType="String"/>
+        <attribute name="cEOPhone" optional="YES" attributeType="String"/>
+        <attribute name="cOOEmail" optional="YES" attributeType="String"/>
+        <attribute name="cOOFamilyName" optional="YES" attributeType="String"/>
+        <attribute name="cOOFirstName" optional="YES" attributeType="String"/>
+        <attribute name="cOONotes" optional="YES" attributeType="String"/>
+        <attribute name="cOOPhone" optional="YES" attributeType="String"/>
+        <attribute name="cTOEmail" optional="YES" attributeType="String"/>
+        <attribute name="cTOFamilyName" optional="YES" attributeType="String"/>
+        <attribute name="cTOFirstName" optional="YES" attributeType="String"/>
+        <attribute name="cTONotes" optional="YES" attributeType="String"/>
+        <attribute name="cTOPhone" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastUse" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="leadDevEmail" optional="YES" attributeType="String"/>
+        <attribute name="leadDevFamilyName" optional="YES" attributeType="String"/>
+        <attribute name="leadDevFirstName" optional="YES" attributeType="String"/>
+        <attribute name="leadDevNotes" optional="YES" attributeType="String"/>
+        <attribute name="leadDevPhone" optional="YES" attributeType="String"/>
+        <attribute name="societyName" attributeType="String"/>
+    </entity>
+</model>
