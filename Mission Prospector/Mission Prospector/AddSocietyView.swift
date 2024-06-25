@@ -99,7 +99,7 @@ struct AddSocietyView: View {
                     TextField(LocalizedStringKey("FirstName"), text: $CEOFirstName)
                     TextField(LocalizedStringKey("FamilyName"), text: $CEOFamilyName)
                     TextField(LocalizedStringKey("email"), text: $CEOEmail).keyboardType(.emailAddress)
-                    TextField(LocalizedStringKey("PhoneNb"), text: $CEOPhone).keyboardType(.numberPad)
+                    TextField(LocalizedStringKey("PhoneNb"), text: $CEOPhone).keyboardType(.phonePad)
                     TextEditor(text: $CEONotes)
                 } header: {
                     HStack {
@@ -121,7 +121,7 @@ struct AddSocietyView: View {
                     TextField(LocalizedStringKey("FirstName"), text: $CTOFirstName)
                     TextField(LocalizedStringKey("FamilyName"), text: $CTOFamilyName)
                     TextField(LocalizedStringKey("email"), text: $CTOEmail).keyboardType(.emailAddress)
-                    TextField(LocalizedStringKey("PhoneNb"), text: $CTOPhone).keyboardType(.numberPad)
+                    TextField(LocalizedStringKey("PhoneNb"), text: $CTOPhone).keyboardType(.phonePad)
                     TextEditor(text: $CTONotes)
                 } header: {
                     HStack {
@@ -142,7 +142,7 @@ struct AddSocietyView: View {
                     TextField(LocalizedStringKey("FirstName"), text: $COOFirstName)
                     TextField(LocalizedStringKey("FamilyName"), text: $COOFamilyName)
                     TextField(LocalizedStringKey("email"), text: $COOEmail).keyboardType(.emailAddress)
-                    TextField(LocalizedStringKey("PhoneNb"), text: $COOPhone).keyboardType(.numberPad)
+                    TextField(LocalizedStringKey("PhoneNb"), text: $COOPhone).keyboardType(.phonePad)
                     TextEditor(text: $COONotes)
                 } header: {
                     HStack {
@@ -163,7 +163,7 @@ struct AddSocietyView: View {
                     TextField(LocalizedStringKey("FirstName"), text: $leadDevFirstName)
                     TextField(LocalizedStringKey("FamilyName"), text: $leadDevFamilyName)
                     TextField(LocalizedStringKey("email"), text: $leadDevEmail).keyboardType(.emailAddress)
-                    TextField(LocalizedStringKey("PhoneNb"), text: $leadDevPhone).keyboardType(.numberPad)
+                    TextField(LocalizedStringKey("PhoneNb"), text: $leadDevPhone).keyboardType(.phonePad)
                     TextEditor(text: $leadDevNotes)
                 } header: {
                     HStack {
