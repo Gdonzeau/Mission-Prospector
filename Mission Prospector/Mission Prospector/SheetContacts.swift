@@ -15,31 +15,41 @@ struct SheetContacts: View {
     @State var searchText = ""
     @State var searchIsActive = true
     var body: some View {
-        VStack {
-            List {
-                ForEach(contacts, id: \.self) { contact in
-                    VStack(alignment: .leading) {
-                        Text("P: \(contact.givenName)")
-                        Text("F: \(contact.familyName)")
-                        Text(getPhoneNumber(contact: contact))
-                        Text(getEmail(contact: contact))
-                    }
+        NavigationStack {
+            VStack {
+                List {
+                    ForEach(searchResults, id: \.self) { contact in
+                        VStack(alignment: .leading) {
+                            Text("P: \(contact.givenName)")
+                            Text("F: \(contact.familyName)")
+                            Text(getPhoneNumber(contact: contact))
+                            Text(getEmail(contact: contact))
+                        }
                         .padding()
                         .onTapGesture {
                             print(contact)
                             self.contact = contact
                             showSheet = false
                         }
+                    }
                 }
             }
         }
         .navigationTitle("Contacts").toolbarTitleDisplayMode(.inline)
-        //.searchable(text: $searchText, isPresented: $searchIsActive, prompt: "Search")
+        .searchable(text: $searchText, isPresented: $searchIsActive, prompt: "Search")
         .padding()
         .onAppear() {
             getContacts()
         }
     }
+    
+    var searchResults: [CNContact] {
+            if searchText.isEmpty {
+                return contacts
+            } else {
+                return contacts.filter { $0.familyName.contains(searchText) || $0.givenName.contains(searchText)}
+            }
+        }
     
     func getContacts() {
         let CNStore = CNContactStore()
