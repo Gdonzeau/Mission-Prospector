@@ -5,11 +5,16 @@
 //  Created by Guillaume on 24/06/2024.
 //
 
+import Contacts
 import SwiftUI
 
 struct AddSocietyView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
+    
+    @State var contact: CNContact?
+    @State var showSheetContacts: Bool = false
+    @State var origin: NotesOrigin?
     
     @State private var isCEOExpanded = false
     @State private var isCTOExpanded = false
@@ -106,6 +111,15 @@ struct AddSocietyView: View {
                     HStack {
                         Text("CEO")
                         Spacer()
+                        Button {
+                            isCEOExpanded = true
+                            showSheetContacts = true
+                            origin = .CEO
+                        } label: {
+                            Text("Contacts")
+                                .font(.footnote)
+                                .padding(.trailing)
+                        }
                         isCEOExpanded ? Image(systemName: "chevron.down.circle")
                             .font(.system(size: 20)) :
                         Image(systemName: "chevron.left.circle")
@@ -128,6 +142,15 @@ struct AddSocietyView: View {
                     HStack {
                         Text("CTO")
                         Spacer()
+                        Button {
+                            isCTOExpanded = true
+                            showSheetContacts = true
+                            origin = .CTO
+                        } label: {
+                            Text("Contacts")
+                                .font(.footnote)
+                                .padding(.trailing)
+                        }
                         isCTOExpanded ? Image(systemName: "chevron.down.circle")
                             .font(.system(size: 20)) :
                         Image(systemName: "chevron.left.circle")
@@ -149,6 +172,15 @@ struct AddSocietyView: View {
                     HStack {
                         Text("COO")
                         Spacer()
+                        Button {
+                            isCOOExpanded = true
+                            showSheetContacts = true
+                            origin = .COO
+                        } label: {
+                            Text("Contacts")
+                                .font(.footnote)
+                                .padding(.trailing)
+                        }
                         isCOOExpanded ? Image(systemName: "chevron.down.circle")
                             .font(.system(size: 20)) :
                         Image(systemName: "chevron.left.circle")
@@ -170,6 +202,15 @@ struct AddSocietyView: View {
                     HStack {
                         Text("Lead Dev")
                         Spacer()
+                        Button {
+                            isLeadDevExpanded = true
+                            showSheetContacts = true
+                            origin = .leadDev
+                        } label: {
+                            Text("Contacts")
+                                .font(.footnote)
+                                .padding(.trailing)
+                        }
                         isLeadDevExpanded ? Image(systemName: "chevron.down.circle")
                             .font(.system(size: 20)) :
                         Image(systemName: "chevron.left.circle")
@@ -226,6 +267,45 @@ struct AddSocietyView: View {
             .alert(isPresented: $alertName, content: {
                 Alert(title: Text(LocalizedStringKey("noNameTitle")), message: Text(LocalizedStringKey("noNameMessage")))
             })
+            /*
+            .sheet(isPresented: $showSheetContacts) {
+                SheetContacts(contact: $contact, showSheet: $showSheetContacts)
+            }
+            */
+            .fullScreenCover(isPresented: $showSheetContacts, content: {
+                SheetContacts(contact: $contact, showSheet: $showSheetContacts)
+            })
+            .onChange(of: showSheetContacts) { _, newValue in
+                if newValue == false {
+                    if let contact = contact {
+                        switch origin {
+                            case .CEO:
+                                print("CEO")
+                                CEOFirstName = contact.givenName
+                                CEOFamilyName = contact.familyName
+                                CEOEmail = (contact.emailAddresses.first?.value ?? "") as String
+                                 CEOPhone = contact.phoneNumbers.first?.value.stringValue ?? ""
+                            case .CTO:
+                                CTOFirstName = contact.givenName
+                                CTOFamilyName = contact.familyName
+                                // CTOEmail = "\(String(describing: contact.emailAddresses))"
+                                 CTOPhone = contact.phoneNumbers.first?.value.stringValue ?? "N/A"
+                            case .COO:
+                                COOFirstName = contact.givenName
+                                COOFamilyName = contact.familyName
+                                //COOEmail = "\(String(describing: contact.emailAddresses))"
+                                COOPhone = contact.phoneNumbers.first?.value.stringValue ?? "N/A"
+                            case .leadDev:
+                                leadDevFirstName = contact.givenName
+                                leadDevFamilyName = contact.familyName
+                                //leadDevEmail = "\(String(describing: contact.emailAddresses))"
+                                leadDevPhone = contact.phoneNumbers.first?.value.stringValue ?? "N/A"
+                            case nil:
+                                break
+                        }
+                    }
+                }
+            }
         }
     }
 }

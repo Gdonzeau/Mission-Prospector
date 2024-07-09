@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F0B539982C3C7EAC00BF043E /* SheetContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B539972C3C7EAC00BF043E /* SheetContacts.swift */; };
 		F0BF67992C2A01AE00F8A376 /* Mission_ProspectorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BF67982C2A01AE00F8A376 /* Mission_ProspectorApp.swift */; };
 		F0BF679D2C2A01B000F8A376 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0BF679C2C2A01B000F8A376 /* Assets.xcassets */; };
 		F0BF67A02C2A01B000F8A376 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0BF679F2C2A01B000F8A376 /* Preview Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F0B539972C3C7EAC00BF043E /* SheetContacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetContacts.swift; sourceTree = "<group>"; };
 		F0BF67952C2A01AE00F8A376 /* Mission Prospector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mission Prospector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0BF67982C2A01AE00F8A376 /* Mission_ProspectorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission_ProspectorApp.swift; sourceTree = "<group>"; };
 		F0BF679C2C2A01B000F8A376 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				F0BF67A82C2A020300F8A376 /* DataController.swift */,
 				F0BF67AD2C2A070600F8A376 /* DetailView.swift */,
 				F0BF67D12C2B394C00F8A376 /* ModifyNotesInDetailView.swift */,
+				F0B539972C3C7EAC00BF043E /* SheetContacts.swift */,
 				F0BF67AF2C2A0D7C00F8A376 /* AddSocietyView.swift */,
 				F0BF67D32C2B4E0700F8A376 /* NotesOrigin.swift */,
 				F0BF67B32C2AA96400F8A376 /* Localizable.strings */,
@@ -161,6 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0B539982C3C7EAC00BF043E /* SheetContacts.swift in Sources */,
 				F0BF67AC2C2A03E000F8A376 /* Society.xcdatamodeld in Sources */,
 				F0BF67B02C2A0D7C00F8A376 /* AddSocietyView.swift in Sources */,
 				F0BF67A72C2A01E100F8A376 /* Home.swift in Sources */,
@@ -319,6 +323,7 @@
 				DEVELOPMENT_TEAM = S47Y9QMPN2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSContactsUsageDescription = "L'application demande l'accès aux contacts";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -348,6 +353,7 @@
 				DEVELOPMENT_TEAM = S47Y9QMPN2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSContactsUsageDescription = "L'application demande l'accès aux contacts";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

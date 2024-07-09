@@ -72,6 +72,7 @@ struct Home: View {
                     }
                 }
             }
+            //.searchable(text: $searchText, isPresented: $searchIsActive)
             .navigationTitle("Sociétés")
             .toolbar {
                 /*

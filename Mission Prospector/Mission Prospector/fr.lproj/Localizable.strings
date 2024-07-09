@@ -7,9 +7,10 @@
 */
 "Societies" = "Entreprises";
 "Society" = "Entreprise";
+"Name" = "Nom";
 "FirstName" = "Prénom";
 "FamilyName" = "Nom de famille";
-"PhoneNb" = "Téléphone";
+"PhoneNb" = "tél.";
 "email" = "email";
 "notes" = "Notes";
 "accueil" = "Accueil";

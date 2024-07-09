@@ -5,8 +5,9 @@
   Created by Guillaume on 25/06/2024.
   
 */
-
+"Societies" = "Societies";
 "Society" = "Society";
+"Name" = "Name";
 "FirstName" = "First name";
 "FamilyName" = "Family name";
 "PhoneNb" = "Phone number";
