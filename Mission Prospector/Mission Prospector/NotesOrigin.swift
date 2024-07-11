@@ -8,6 +8,7 @@
 import Foundation
 
 enum NotesOrigin {
+    case agent
     case CEO
     case CTO
     case COO

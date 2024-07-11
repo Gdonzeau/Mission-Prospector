@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="SocietyStorage" representedClassName="SocietyStorage" syncable="YES" codeGenerationType="class">
+        <attribute name="agentEmail" optional="YES" attributeType="String"/>
+        <attribute name="agentFamilyName" optional="YES" attributeType="String"/>
+        <attribute name="agentFirstName" optional="YES" attributeType="String"/>
+        <attribute name="agentNotes" optional="YES" attributeType="String"/>
+        <attribute name="agentPhone" optional="YES" attributeType="String"/>
         <attribute name="cEOEmail" optional="YES" attributeType="String"/>
         <attribute name="cEOFamilyName" optional="YES" attributeType="String"/>
         <attribute name="cEOFirstName" optional="YES" attributeType="String"/>

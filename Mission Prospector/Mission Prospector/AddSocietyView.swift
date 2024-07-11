@@ -16,6 +16,7 @@ struct AddSocietyView: View {
     @State var showSheetContacts: Bool = false
     @State var origin: NotesOrigin?
     
+    @State private var isAgentExpanded = false
     @State private var isCEOExpanded = false
     @State private var isCTOExpanded = false
     @State private var isCOOExpanded = false
@@ -23,6 +24,13 @@ struct AddSocietyView: View {
     @State private var alertName = false
     
     @State private var societyName: String = ""
+    
+    // Agent
+    @State private var agentFirstName: String
+    @State private var agentFamilyName: String
+    @State private var agentEmail: String
+    @State private var agentPhone: String
+    @State private var agentNotes: String
     // CEO
     @State private var CEOFirstName: String
     @State private var CEOFamilyName: String
@@ -50,6 +58,11 @@ struct AddSocietyView: View {
     
     init(
         societyName: String,
+        agentFirstName: String = "",
+        agentFamilyName: String = "",
+        agentEmail: String = "",
+        agentPhone: String = "",
+        agentNotes: String = "",
         CEOFirstName: String = "",
         CEOFamilyName: String = "",
         CEOEmail: String = "",
@@ -72,6 +85,11 @@ struct AddSocietyView: View {
         leadDevNotes: String = ""
     ) {
         self.societyName = societyName
+        self.agentFirstName = agentFirstName
+        self.agentFamilyName = agentFamilyName
+        self.agentEmail = agentEmail
+        self.agentPhone = agentPhone
+        self.agentNotes = agentNotes
         self.CEOFirstName = CEOFirstName
         self.CEOFamilyName = CEOFamilyName
         self.CEOEmail = CEOEmail
@@ -98,6 +116,38 @@ struct AddSocietyView: View {
             Form {
                 Section {
                     TextField(LocalizedStringKey("Society"), text: $societyName)
+                }
+                
+                Section(isExpanded: $isAgentExpanded) {
+                    TextField(LocalizedStringKey("FirstName"), text: $agentFirstName)
+                    TextField(LocalizedStringKey("FamilyName"), text: $agentFamilyName)
+                    TextField(LocalizedStringKey("email"), text: $agentEmail).keyboardType(.emailAddress)
+                    TextField(LocalizedStringKey("PhoneNb"), text: $agentPhone).keyboardType(.phonePad)
+                    TextEditor(text: $agentNotes)
+                        
+                } header: {
+                    HStack {
+                        Text("Agent")
+                        Spacer()
+                        Button {
+                            isAgentExpanded = true
+                            showSheetContacts = true
+                            origin = .agent
+                        } label: {
+                            Text("Contacts")
+                                .font(.footnote)
+                                .padding(.trailing)
+                        }
+                        isAgentExpanded ? Image(systemName: "chevron.down.circle")
+                            .font(.system(size: 20)) :
+                        Image(systemName: "chevron.left.circle")
+                            .font(.system(size: 20))
+                    }
+                    .onTapGesture {
+                        withAnimation {
+                            isAgentExpanded.toggle()
+                        }
+                    }
                 }
                 
                 Section(isExpanded: $isCEOExpanded) {
@@ -232,6 +282,11 @@ struct AddSocietyView: View {
                         let newSociety = SocietyStorage(context: moc)
                         newSociety.id = UUID()
                         newSociety.societyName = societyName
+                        newSociety.agentFirstName = agentFirstName
+                        newSociety.agentFamilyName = agentFamilyName
+                        newSociety.agentEmail = agentEmail
+                        newSociety.agentPhone = agentPhone
+                        newSociety.agentNotes = agentNotes
                         newSociety.cEOFirstName = CEOFirstName
                         newSociety.cEOFamilyName = CEOFamilyName
                         newSociety.cEOEmail = CEOEmail
@@ -279,27 +334,34 @@ struct AddSocietyView: View {
                 if newValue == false {
                     if let contact = contact {
                         switch origin {
+                            case .agent:
+                                agentFirstName = contact.givenName
+                                agentFamilyName = contact.familyName
+                                agentEmail = (contact.emailAddresses.first?.value ?? "") as String
+                                agentPhone = contact.phoneNumbers.first?.value.stringValue ?? ""
+                                
                             case .CEO:
-                                print("CEO")
                                 CEOFirstName = contact.givenName
                                 CEOFamilyName = contact.familyName
                                 CEOEmail = (contact.emailAddresses.first?.value ?? "") as String
-                                 CEOPhone = contact.phoneNumbers.first?.value.stringValue ?? ""
+                                CEOPhone = contact.phoneNumbers.first?.value.stringValue ?? ""
+                                
                             case .CTO:
                                 CTOFirstName = contact.givenName
                                 CTOFamilyName = contact.familyName
-                                // CTOEmail = "\(String(describing: contact.emailAddresses))"
-                                 CTOPhone = contact.phoneNumbers.first?.value.stringValue ?? "N/A"
+                                CTOEmail = (contact.emailAddresses.first?.value ?? "") as String
+                                CTOPhone = contact.phoneNumbers.first?.value.stringValue ?? ""
+                                
                             case .COO:
                                 COOFirstName = contact.givenName
                                 COOFamilyName = contact.familyName
-                                //COOEmail = "\(String(describing: contact.emailAddresses))"
-                                COOPhone = contact.phoneNumbers.first?.value.stringValue ?? "N/A"
+                                COOEmail = (contact.emailAddresses.first?.value ?? "") as String
+                                COOPhone = contact.phoneNumbers.first?.value.stringValue ?? ""
                             case .leadDev:
                                 leadDevFirstName = contact.givenName
                                 leadDevFamilyName = contact.familyName
-                                //leadDevEmail = "\(String(describing: contact.emailAddresses))"
-                                leadDevPhone = contact.phoneNumbers.first?.value.stringValue ?? "N/A"
+                                leadDevEmail = (contact.emailAddresses.first?.value ?? "") as String
+                                leadDevPhone = contact.phoneNumbers.first?.value.stringValue ?? ""
                             case nil:
                                 break
                         }

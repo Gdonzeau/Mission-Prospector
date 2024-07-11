@@ -14,6 +14,12 @@ struct Home: View {
     @State private var showingAddScreen = false
     
     @State var societyName: String = ""
+    // Agent
+    @State var agentFirstName: String = ""
+    @State var agentFamilyName: String = ""
+    @State var agentEmail: String = ""
+    @State var agentPhone: String = ""
+    @State var agentNotes: String = ""
     // CEO
     @State var CEOFirstName: String = ""
     @State var CEOFamilyName: String = ""
@@ -89,11 +95,17 @@ struct Home: View {
                 }
             }
             .sheet(isPresented: $showingAddScreen) {
-                AddSocietyView(societyName: societyName, CEOFirstName: CEOFirstName, CEOFamilyName: CEOFamilyName, CEOEmail: CEOEmail, CEOPhone: CEOPhone, CEONotes: CEONotes, CTOFirstName: CTOFirstName, CTOFamilyName: CTOFamilyName, CTOEmail: CTOEmail, CTOPhone: CTOPhone, CTONotes: CTONotes, COOFirstName: COOFirstName, COOFamilyName: COOFamilyName, COOEmail: COOEmail, COOPhone: COOPhone, COONotes: COONotes, leadDevFirstName: leadDevFirstName, leadDevFamilyName: leadDevFamilyName, leadDevEmail: leadDevEmail, leadDevPhone: leadDevPhone, leadDevNotes: leadDevNotes)
+                AddSocietyView(societyName: societyName, agentFirstName: agentFirstName, agentFamilyName: agentFamilyName, agentEmail: agentEmail, agentPhone: agentPhone, agentNotes: agentNotes , CEOFirstName: CEOFirstName, CEOFamilyName: CEOFamilyName, CEOEmail: CEOEmail, CEOPhone: CEOPhone, CEONotes: CEONotes, CTOFirstName: CTOFirstName, CTOFamilyName: CTOFamilyName, CTOEmail: CTOEmail, CTOPhone: CTOPhone, CTONotes: CTONotes, COOFirstName: COOFirstName, COOFamilyName: COOFamilyName, COOEmail: COOEmail, COOPhone: COOPhone, COONotes: COONotes, leadDevFirstName: leadDevFirstName, leadDevFamilyName: leadDevFamilyName, leadDevEmail: leadDevEmail, leadDevPhone: leadDevPhone, leadDevNotes: leadDevNotes)
             }
             .onChange(of: showingAddScreen) { _, newValue in
                 if !newValue {
                     societyName = ""
+                    // Agent
+                    agentFirstName = ""
+                    agentFamilyName = ""
+                    agentEmail = ""
+                    agentPhone = ""
+                    agentNotes = ""
                     // CEO
                     CEOFirstName = ""
                     CEOFamilyName = ""
@@ -130,6 +142,12 @@ struct Home: View {
     
     func editSociety(_ society: SocietyStorage) {
         societyName = society.societyName ?? ""
+        // Agent
+        agentFirstName = society.agentFirstName ?? ""
+        agentFamilyName = society.agentFamilyName ?? ""
+        agentEmail = society.agentEmail ?? ""
+        agentPhone = society.agentPhone ?? ""
+        agentNotes = society.agentNotes ?? ""
         // CEO
         CEOFirstName = society.cEOFirstName ?? ""
         CEOFamilyName = society.cEOFamilyName ?? ""

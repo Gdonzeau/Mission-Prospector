@@ -19,6 +19,7 @@ struct DetailView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
     @State private var showingDeleteAlert = false
+    @State private var isAgentExpanded = true
     @State private var isCEOExpanded = true
     @State private var isCTOExpanded = true
     @State private var isCOOExpanded = true
@@ -27,6 +28,52 @@ struct DetailView: View {
     var body: some View {
         VStack {
             List {
+                Section(isExpanded: $isAgentExpanded) {
+                    Text(society.agentFirstName ?? "Inconnu")
+                    Text(society.agentFamilyName ?? "Inconnu")
+                    HStack {
+                        if let mail = society.agentEmail, mail != "" {
+                            Link(destination: URL(string: "mailto:\(mail)")!) {
+                                Image(systemName: "envelope")
+                            }
+                        }
+                        Text(society.agentEmail ?? "Inconnu")
+                    }
+                    HStack {
+                        if let phone = society.agentPhone, phone != "" {
+                            Link(destination: URL(string: "tel:\(phone)")!) {
+                                Image(systemName: "phone")
+                            }
+                        }
+                        Text(society.agentPhone ?? "Inconnu")
+                    }
+                    HStack(alignment: .top) {
+                        Text(society.agentNotes ?? "Inconnu")
+                        Spacer()
+                        Button {
+                            notesOrigin = .agent
+                            updateNotes()
+                            modifyNotes = true
+                        } label: {
+                            Image(systemName: "pencil")
+                        }
+                    }
+                } header: {
+                    HStack {
+                        Text("Agent")
+                        Spacer()
+                        isAgentExpanded ? Image(systemName: "chevron.down.circle")
+                            .font(.system(size: 20)) :
+                        Image(systemName: "chevron.left.circle")
+                            .font(.system(size: 20))
+                    }
+                    .onTapGesture {
+                        withAnimation {
+                            isAgentExpanded.toggle()
+                        }
+                    }
+                }
+                
                 Section(isExpanded: $isCEOExpanded) {
                     Text(society.cEOFirstName ?? "Inconnu")
                     Text(society.cEOFamilyName ?? "Inconnu")
@@ -235,6 +282,8 @@ struct DetailView: View {
                 if !newValue {
                     print("On garde les notes")
                     switch notesOrigin {
+                        case .agent:
+                            society.agentNotes = notesToModify
                         case .CEO:
                             society.cEONotes = notesToModify
                         case .CTO:
@@ -257,6 +306,8 @@ struct DetailView: View {
     
     private func updateNotes() {
         switch notesOrigin {
+            case .agent:
+                notesToModify = society.agentNotes ?? ""
             case .CEO:
                 notesToModify = society.cEONotes ?? ""
             case .CTO:
