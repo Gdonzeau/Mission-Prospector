@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F028AA5E2C43DDFE0036D2D8 /* PlanNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F028AA5D2C43DDFE0036D2D8 /* PlanNotificationView.swift */; };
 		F0B539982C3C7EAC00BF043E /* SheetContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B539972C3C7EAC00BF043E /* SheetContacts.swift */; };
 		F0BF67992C2A01AE00F8A376 /* Mission_ProspectorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BF67982C2A01AE00F8A376 /* Mission_ProspectorApp.swift */; };
 		F0BF679D2C2A01B000F8A376 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0BF679C2C2A01B000F8A376 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F028AA5D2C43DDFE0036D2D8 /* PlanNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanNotificationView.swift; sourceTree = "<group>"; };
 		F0B539972C3C7EAC00BF043E /* SheetContacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetContacts.swift; sourceTree = "<group>"; };
 		F0BF67952C2A01AE00F8A376 /* Mission Prospector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mission Prospector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0BF67982C2A01AE00F8A376 /* Mission_ProspectorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission_ProspectorApp.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				F0BF67A62C2A01E100F8A376 /* Home.swift */,
 				F0BF67A82C2A020300F8A376 /* DataController.swift */,
 				F0BF67AD2C2A070600F8A376 /* DetailView.swift */,
+				F028AA5D2C43DDFE0036D2D8 /* PlanNotificationView.swift */,
 				F0BF67D12C2B394C00F8A376 /* ModifyNotesInDetailView.swift */,
 				F0B539972C3C7EAC00BF043E /* SheetContacts.swift */,
 				F0BF67AF2C2A0D7C00F8A376 /* AddSocietyView.swift */,
@@ -172,6 +175,7 @@
 				F0BF67AE2C2A070600F8A376 /* DetailView.swift in Sources */,
 				F0BF67992C2A01AE00F8A376 /* Mission_ProspectorApp.swift in Sources */,
 				F0BF67D22C2B394C00F8A376 /* ModifyNotesInDetailView.swift in Sources */,
+				F028AA5E2C43DDFE0036D2D8 /* PlanNotificationView.swift in Sources */,
 				F0BF67D42C2B4E0700F8A376 /* NotesOrigin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

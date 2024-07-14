@@ -15,6 +15,15 @@ struct Mission_ProspectorApp: App {
         WindowGroup {
             Home()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
+                .onAppear() {
+                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                        if success {
+                            print("All set!")
+                        } else if let error = error {
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
         }
     }
 }

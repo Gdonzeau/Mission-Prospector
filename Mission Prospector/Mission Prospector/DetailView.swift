@@ -5,12 +5,15 @@
 //  Created by Guillaume on 24/06/2024.
 //
 
+import UserNotifications
 import SwiftUI
 
 struct DetailView: View {
     @FetchRequest(sortDescriptors: []) var societies: FetchedResults<SocietyStorage>
     
     @State var society: SocietyStorage
+    
+    @State var date: Date = Date()
     
     @State var modifyNotes = false
     @State var notesOrigin: NotesOrigin = .CEO
@@ -28,6 +31,9 @@ struct DetailView: View {
     var body: some View {
         VStack {
             List {
+                NavigationLink("Planifier rappel") {
+                    PlanNotificationView(society: society)
+                }
                 Section(isExpanded: $isAgentExpanded) {
                     Text(society.agentFirstName ?? "Inconnu")
                     Text(society.agentFamilyName ?? "Inconnu")
@@ -303,6 +309,7 @@ struct DetailView: View {
             }
         }
     }
+    
     
     private func updateNotes() {
         switch notesOrigin {

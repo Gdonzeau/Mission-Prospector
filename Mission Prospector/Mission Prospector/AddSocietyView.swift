@@ -322,11 +322,6 @@ struct AddSocietyView: View {
             .alert(isPresented: $alertName, content: {
                 Alert(title: Text(LocalizedStringKey("noNameTitle")), message: Text(LocalizedStringKey("noNameMessage")))
             })
-            /*
-            .sheet(isPresented: $showSheetContacts) {
-                SheetContacts(contact: $contact, showSheet: $showSheetContacts)
-            }
-            */
             .fullScreenCover(isPresented: $showSheetContacts, content: {
                 SheetContacts(contact: $contact, showSheet: $showSheetContacts)
             })

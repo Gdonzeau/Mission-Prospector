@@ -57,7 +57,7 @@ struct Home: View {
                                 Text(society.societyName ?? "N/A")
                                     .font(.headline)
                                 
-                                Text("\(society.cEOFirstName ?? "N/A") \(society.cEOFamilyName ?? "N/A")")
+                                Text(societyContact(society))
                                     .foregroundStyle(.secondary)
                             }
                         }
@@ -78,14 +78,8 @@ struct Home: View {
                     }
                 }
             }
-            //.searchable(text: $searchText, isPresented: $searchIsActive)
             .navigationTitle("Sociétés")
             .toolbar {
-                /*
-                ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
-                }
-                */
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         showingAddScreen.toggle()
@@ -177,6 +171,26 @@ struct Home: View {
         try? moc.save()
         
         showingAddScreen = true
+    }
+    
+    func societyContact(_ society: SocietyStorage) -> String {
+        if let firstName = society.agentFirstName, let familyName = society.agentFamilyName {
+            return firstName + " " + familyName
+            
+        } else if let firstName = society.cEOFirstName, let familyName = society.cEOFamilyName {
+            return firstName + " " + familyName
+            
+        } else if let firstName = society.cTOFirstName, let familyName = society.cTOFamilyName {
+            return firstName + " " + familyName
+            
+        } else if let firstName = society.cOOFirstName, let familyName = society.cOOFamilyName {
+            return firstName + " " + familyName
+            
+        } else if let firstName = society.leadDevFirstName, let familyName = society.leadDevFamilyName {
+            return firstName + " " + familyName
+            
+        }
+        return "Pas de contact défini"
     }
 }
 
