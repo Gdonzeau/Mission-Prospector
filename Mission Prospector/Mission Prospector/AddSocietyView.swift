@@ -275,46 +275,8 @@ struct AddSocietyView: View {
             
                 Section {
                     Button(LocalizedStringKey("save")) {
-                        guard societyName != "" else {
-                            alertName = true
-                            return
-                        }
-                        let newSociety = SocietyStorage(context: moc)
-                        newSociety.id = UUID()
-                        newSociety.societyName = societyName
-                        newSociety.agentFirstName = agentFirstName
-                        newSociety.agentFamilyName = agentFamilyName
-                        newSociety.agentEmail = agentEmail
-                        newSociety.agentPhone = agentPhone
-                        newSociety.agentNotes = agentNotes
-                        newSociety.cEOFirstName = CEOFirstName
-                        newSociety.cEOFamilyName = CEOFamilyName
-                        newSociety.cEOEmail = CEOEmail
-                        newSociety.cEOPhone = CEOPhone
-                        newSociety.cEONotes = CEONotes
-                        newSociety.cTOFirstName = CTOFirstName
-                        newSociety.cTOFamilyName = CTOFamilyName
-                        newSociety.cTOEmail = CTOEmail
-                        newSociety.cTOPhone = CTOPhone
-                        newSociety.cTONotes = CTONotes
-                        newSociety.cOOFirstName = COOFirstName
-                        newSociety.cOOFamilyName = COOFamilyName
-                        newSociety.cOOEmail = COOEmail
-                        newSociety.cOOPhone = COOPhone
-                        newSociety.cOONotes = COONotes
-                        newSociety.leadDevFirstName = leadDevFirstName
-                        newSociety.leadDevFamilyName = leadDevFamilyName
-                        newSociety.leadDevEmail = leadDevEmail
-                        newSociety.leadDevPhone = leadDevPhone
-                        newSociety.leadDevNotes = leadDevNotes
-                        newSociety.lastUse = Date()
-                        
-                        do {
-                            try moc.save()
-                            dismiss()
-                        } catch {
-                            print("Error while saving: \(error.localizedDescription)")
-                        }
+                        //saveSociety()
+                        dismiss()
                     }
                 }
             }
@@ -322,9 +284,14 @@ struct AddSocietyView: View {
             .alert(isPresented: $alertName, content: {
                 Alert(title: Text(LocalizedStringKey("noNameTitle")), message: Text(LocalizedStringKey("noNameMessage")))
             })
+            .sheet(isPresented: $showSheetContacts, content: {
+                SheetContacts(contact: $contact, showSheet: $showSheetContacts)
+            })
+            /*
             .fullScreenCover(isPresented: $showSheetContacts, content: {
                 SheetContacts(contact: $contact, showSheet: $showSheetContacts)
             })
+             */
             .onChange(of: showSheetContacts) { _, newValue in
                 if newValue == false {
                     if let contact = contact {
@@ -363,6 +330,55 @@ struct AddSocietyView: View {
                     }
                 }
             }
+            .onDisappear() {
+                saveSociety()
+            }
+        }
+    }
+    
+    private func saveSociety() {
+        /*
+        guard societyName != "" else {
+            alertName = true
+            
+            return
+        }
+         */
+        let newSociety = SocietyStorage(context: moc)
+        newSociety.id = UUID()
+        newSociety.societyName = societyName
+        newSociety.agentFirstName = agentFirstName
+        newSociety.agentFamilyName = agentFamilyName
+        newSociety.agentEmail = agentEmail
+        newSociety.agentPhone = agentPhone
+        newSociety.agentNotes = agentNotes
+        newSociety.cEOFirstName = CEOFirstName
+        newSociety.cEOFamilyName = CEOFamilyName
+        newSociety.cEOEmail = CEOEmail
+        newSociety.cEOPhone = CEOPhone
+        newSociety.cEONotes = CEONotes
+        newSociety.cTOFirstName = CTOFirstName
+        newSociety.cTOFamilyName = CTOFamilyName
+        newSociety.cTOEmail = CTOEmail
+        newSociety.cTOPhone = CTOPhone
+        newSociety.cTONotes = CTONotes
+        newSociety.cOOFirstName = COOFirstName
+        newSociety.cOOFamilyName = COOFamilyName
+        newSociety.cOOEmail = COOEmail
+        newSociety.cOOPhone = COOPhone
+        newSociety.cOONotes = COONotes
+        newSociety.leadDevFirstName = leadDevFirstName
+        newSociety.leadDevFamilyName = leadDevFamilyName
+        newSociety.leadDevEmail = leadDevEmail
+        newSociety.leadDevPhone = leadDevPhone
+        newSociety.leadDevNotes = leadDevNotes
+        newSociety.lastUse = Date()
+        
+        do {
+            try moc.save()
+            dismiss()
+        } catch {
+            print("Error while saving: \(error.localizedDescription)")
         }
     }
 }

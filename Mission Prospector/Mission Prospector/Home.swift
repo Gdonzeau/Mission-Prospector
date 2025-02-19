@@ -174,19 +174,19 @@ struct Home: View {
     }
     
     func societyContact(_ society: SocietyStorage) -> String {
-        if let firstName = society.agentFirstName, let familyName = society.agentFamilyName {
+        if let firstName = society.agentFirstName, let familyName = society.agentFamilyName, firstName != "", familyName != "" {
             return firstName + " " + familyName
             
-        } else if let firstName = society.cEOFirstName, let familyName = society.cEOFamilyName {
+        } else if let firstName = society.cEOFirstName, let familyName = society.cEOFamilyName, firstName != "", familyName != "" {
             return firstName + " " + familyName
             
-        } else if let firstName = society.cTOFirstName, let familyName = society.cTOFamilyName {
+        } else if let firstName = society.cTOFirstName, let familyName = society.cTOFamilyName, firstName != "", familyName != "" {
             return firstName + " " + familyName
             
-        } else if let firstName = society.cOOFirstName, let familyName = society.cOOFamilyName {
+        } else if let firstName = society.cOOFirstName, let familyName = society.cOOFamilyName, firstName != "", familyName != "" {
             return firstName + " " + familyName
             
-        } else if let firstName = society.leadDevFirstName, let familyName = society.leadDevFamilyName {
+        } else if let firstName = society.leadDevFirstName, let familyName = society.leadDevFamilyName, firstName != "", familyName != "" {
             return firstName + " " + familyName
             
         }

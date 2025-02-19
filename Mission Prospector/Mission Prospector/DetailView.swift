@@ -307,6 +307,9 @@ struct DetailView: View {
                     }
                 }
             }
+            .onAppear {
+                print("Open")
+            }
         }
     }
     

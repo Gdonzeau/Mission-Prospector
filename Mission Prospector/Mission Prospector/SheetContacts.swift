@@ -9,6 +9,7 @@ import SwiftUI
 import Contacts
 
 struct SheetContacts: View {
+    @Environment(\.dismiss) var dismiss
     @State var contacts: [CNContact] = []
     @Binding var contact: CNContact?
     @Binding var showSheet: Bool
@@ -36,10 +37,22 @@ struct SheetContacts: View {
             }
         }
         .navigationTitle("Contacts").toolbarTitleDisplayMode(.inline)
+        .navigationBarItems(trailing: dismissButton)
         .searchable(text: $searchText, isPresented: $searchIsActive, prompt: "Search")
         .padding()
         .onAppear() {
             getContacts()
+        }
+    }
+    
+    var dismissButton: some View {
+        Button {
+            dismiss()
+        } label: {
+            Image(systemName: "xmark.circle")
+                .resizable()
+                .frame(width: 20, height: 20)
+                .tint(.primary)
         }
     }
     
@@ -88,6 +101,8 @@ struct SheetContacts: View {
                 }
             case .restricted:
                 print("Restricted")
+            case .limited:
+                print("Limited")
             @unknown default:
                 print("Unknown")
         }
